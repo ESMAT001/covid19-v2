@@ -119,10 +119,10 @@ $(document).ready(() => {
                 let html = `<tr class="tr">
               <td class="text-left align-middle"><span> <img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${countryCode.toLowerCase()}.svg" alt="${country}-flag" ></span> ${country}</td>
               <td class="text-center align-middle table-total">${total}</td>
-              <td class="text-center align-middle table-death">${death} <span class="badge badge-danger">${getPercent(total,death)}%</span></td>
-              <td class="text-center align-middle table-recovered">${recovered} <span class="badge badge-success">${getPercent(total,recovered)}%</span></td>
-              <td class="text-center align-middle table-active">${active} <span class="badge badge-warning text-white">${getPercent(total,active)}%</span></td>
-              <td class="text-center align-middle table-death">${critical} <span class="badge badge-danger">${getPercent(active,critical)}%</span></td>
+              <td class="text-center align-middle table-death">${death} <span class="badge badge-danger">${getPercent(total, death)}%</span></td>
+              <td class="text-center align-middle table-recovered">${recovered} <span class="badge badge-success">${getPercent(total, recovered)}%</span></td>
+              <td class="text-center align-middle table-active">${active} <span class="badge badge-warning text-white">${getPercent(total, active)}%</span></td>
+              <td class="text-center align-middle table-death">${critical} <span class="badge badge-danger">${getPercent(active, critical)}%</span></td>
           </tr>`
                 $("#all-countries").append(html);
             }
@@ -170,9 +170,9 @@ $(document).ready(() => {
                         <div class="card-body text-center">
                             <p class="hh4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${countryCode.toLowerCase()}.svg" alt="${country}-flag"></span> ${country}</p>
                             <p class="h4 font-weight-light text-primary">Total ${total}</p>
-                            <p class="h4 font-weight-light text-warning">Active ${active} <span class="badge badge-warning">${getPercent(total,active)}%</span></p>
-                            <p class="h4 font-weight-light text-danger">Death ${death} <span class="badge badge-danger">${getPercent(total,death)}%</span></p>
-                            <p class="h4 font-weight-light  text-success">Recoverd ${recoverd} <span class="badge badge-success">${getPercent(total,recoverd)}%</span></p>
+                            <p class="h4 font-weight-light text-warning">Active ${active} <span class="badge badge-warning">${getPercent(total, active)}%</span></p>
+                            <p class="h4 font-weight-light text-danger">Death ${death} <span class="badge badge-danger">${getPercent(total, death)}%</span></p>
+                            <p class="h4 font-weight-light  text-success">Recoverd ${recoverd} <span class="badge badge-success">${getPercent(total, recoverd)}%</span></p>
                            </div>
                           </div>`
                             // $(".world-map-country-card").show();
@@ -194,28 +194,28 @@ $(document).ready(() => {
                 data = await data.json();
                 console.log("ten")
                 for (let i = 0; i < data.length; i += 4) {
-                    let newHtml=`<div class="row" >
+                    let newHtml = `<div class="row" >
                     <div class="col-12 col-lg-6">
                         <div class="row">
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                             <div class="card shadow rounded h-100 fade">
                             <div class="card-body text-center">
                             <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i].countryCode.toLowerCase()}.svg" alt="${data[i].country}-flag" ></span> ${data[i].country}</p>
                             <p class="h4 font-weight-light text-primary">Total ${data[i].totalConfirmed}</p>
-                            <p class="h4 font-weight-light text-warning">Active ${data[i].activeCases} <span class="badge badge-warning">${getPercent(data[i].totalConfirmed,data[i].activeCases)}%</span></p>
-                            <p class="h4 font-weight-light text-danger">Death  ${data[i].totalDeaths} <span class="badge badge-danger">${getPercent(data[i].totalConfirmed,data[i].totalDeaths)}%</span></p>
-                            <p class="h4 font-weight-light text-success">Recoverd ${data[i].totalRecovered} <span class="badge badge-success">${getPercent(data[i].totalConfirmed,data[i].totalRecovered)}%</span></p>
+                            <p class="h4 font-weight-light text-warning">Active ${data[i].activeCases} <span class="badge badge-warning">${getPercent(data[i].totalConfirmed, data[i].activeCases)}%</span></p>
+                            <p class="h4 font-weight-light text-danger">Death  ${data[i].totalDeaths} <span class="badge badge-danger">${getPercent(data[i].totalConfirmed, data[i].totalDeaths)}%</span></p>
+                            <p class="h4 font-weight-light text-success">Recoverd ${data[i].totalRecovered} <span class="badge badge-success">${getPercent(data[i].totalConfirmed, data[i].totalRecovered)}%</span></p>
                         </div>
                             </div>
                             </div>
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                             <div class="card shadow rounded h-100 fade">
                             <div class="card-body text-center">
-                            <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i+1].countryCode.toLowerCase()}.svg" alt="${data[i+1].country}-flag" ></span> ${data[i+1].country}</p>
-                            <p class="h4 font-weight-light text-primary">Total ${data[i+1].totalConfirmed}</p>
-                            <p class="h4 font-weight-light text-warning">Active ${data[i+1].activeCases} <span class="badge badge-warning">${getPercent(data[i+1].totalConfirmed,data[i+1].activeCases)}%</span></p>
-                            <p class="h4 font-weight-light text-danger">Death  ${data[i+1].totalDeaths} <span class="badge badge-danger">${getPercent(data[i+1].totalConfirmed,data[i+1].totalDeaths)}%</span></p>
-                            <p class="h4 font-weight-light text-success">Recoverd ${data[i+1].totalRecovered} <span class="badge badge-success">${getPercent(data[i+1].totalConfirmed,data[i+1].totalRecovered)}%</span></p>
+                            <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i + 1].countryCode.toLowerCase()}.svg" alt="${data[i + 1].country}-flag" ></span> ${data[i + 1].country}</p>
+                            <p class="h4 font-weight-light text-primary">Total ${data[i + 1].totalConfirmed}</p>
+                            <p class="h4 font-weight-light text-warning">Active ${data[i + 1].activeCases} <span class="badge badge-warning">${getPercent(data[i + 1].totalConfirmed, data[i + 1].activeCases)}%</span></p>
+                            <p class="h4 font-weight-light text-danger">Death  ${data[i + 1].totalDeaths} <span class="badge badge-danger">${getPercent(data[i + 1].totalConfirmed, data[i + 1].totalDeaths)}%</span></p>
+                            <p class="h4 font-weight-light text-success">Recoverd ${data[i + 1].totalRecovered} <span class="badge badge-success">${getPercent(data[i + 1].totalConfirmed, data[i + 1].totalRecovered)}%</span></p>
                         </div>
                             </div>
                             </div>
@@ -223,58 +223,32 @@ $(document).ready(() => {
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="row">
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                             <div class="card shadow rounded h-100 fade">
                             <div class="card-body text-center">
-                            <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i+2].countryCode.toLowerCase()}.svg" alt="${data[i+2].country}-flag" ></span> ${data[i+2].country}</p>
-                            <p class="h4 font-weight-light text-primary">Total ${data[i+2].totalConfirmed}</p>
-                            <p class="h4 font-weight-light text-warning">Active ${data[i+2].activeCases} <span class="badge badge-warning">${getPercent(data[i+2].totalConfirmed,data[i+2].activeCases)}%</span></p>
-                            <p class="h4 font-weight-light text-danger">Death  ${data[i+2].totalDeaths} <span class="badge badge-danger">${getPercent(data[i+2].totalConfirmed,data[i+2].totalDeaths)}%</span></p>
-                            <p class="h4 font-weight-light text-success">Recoverd ${data[i+2].totalRecovered} <span class="badge badge-success">${getPercent(data[i+2].totalConfirmed,data[i+2].totalRecovered)}%</span></p>
+                            <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i + 2].countryCode.toLowerCase()}.svg" alt="${data[i + 2].country}-flag" ></span> ${data[i + 2].country}</p>
+                            <p class="h4 font-weight-light text-primary">Total ${data[i + 2].totalConfirmed}</p>
+                            <p class="h4 font-weight-light text-warning">Active ${data[i + 2].activeCases} <span class="badge badge-warning">${getPercent(data[i + 2].totalConfirmed, data[i + 2].activeCases)}%</span></p>
+                            <p class="h4 font-weight-light text-danger">Death  ${data[i + 2].totalDeaths} <span class="badge badge-danger">${getPercent(data[i + 2].totalConfirmed, data[i + 2].totalDeaths)}%</span></p>
+                            <p class="h4 font-weight-light text-success">Recoverd ${data[i + 2].totalRecovered} <span class="badge badge-success">${getPercent(data[i + 2].totalConfirmed, data[i + 2].totalRecovered)}%</span></p>
                         </div>
                             </div>
                             </div>
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 mb-3">
                             <div class="card shadow rounded h-100 fade">
                             <div class="card-body text-center">
-                            <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i+3].countryCode.toLowerCase()}.svg" alt="${data[i+3].country}-flag" ></span> ${data[i+3].country}</p>
-                            <p class="h4 font-weight-light text-primary">Total ${data[i+3].totalConfirmed}</p>
-                            <p class="h4 font-weight-light text-warning">Active ${data[i+3].activeCases} <span class="badge badge-warning">${getPercent(data[i+3].totalConfirmed,data[i+3].activeCases)}%</span></p>
-                            <p class="h4 font-weight-light text-danger">Death  ${data[i+3].totalDeaths} <span class="badge badge-danger">${getPercent(data[i+3].totalConfirmed,data[i+3].totalDeaths)}%</span></p>
-                            <p class="h4 font-weight-light text-success">Recoverd ${data[i+3].totalRecovered} <span class="badge badge-success">${getPercent(data[i+3].totalConfirmed,data[i+3].totalRecovered)}%</span></p>
+                            <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i + 3].countryCode.toLowerCase()}.svg" alt="${data[i + 3].country}-flag" ></span> ${data[i + 3].country}</p>
+                            <p class="h4 font-weight-light text-primary">Total ${data[i + 3].totalConfirmed}</p>
+                            <p class="h4 font-weight-light text-warning">Active ${data[i + 3].activeCases} <span class="badge badge-warning">${getPercent(data[i + 3].totalConfirmed, data[i + 3].activeCases)}%</span></p>
+                            <p class="h4 font-weight-light text-danger">Death  ${data[i + 3].totalDeaths} <span class="badge badge-danger">${getPercent(data[i + 3].totalConfirmed, data[i + 3].totalDeaths)}%</span></p>
+                            <p class="h4 font-weight-light text-success">Recoverd ${data[i + 3].totalRecovered} <span class="badge badge-success">${getPercent(data[i + 3].totalConfirmed, data[i + 3].totalRecovered)}%</span></p>
                         </div>
                             </div>
                             </div>
                         </div>
                     </div>
                 </div>`
-                    let html = `<div class="col col-lg-6 mx-auto row d-flex flex-column flex-sm-column flex-md-row">
 
-                <div class="col mb-3">
-                    <div class="card shadow rounded h-100 fade">
-                    <div class="card-body text-center">
-                    <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i].countryCode.toLowerCase()}.svg" alt="${data[i].country}-flag" ></span> ${data[i].country}</p>
-                    <p class="h4 font-weight-light text-primary">Total ${data[i].totalConfirmed}</p>
-                    <p class="h4 font-weight-light text-warning">Active ${data[i].activeCases} <span class="badge badge-warning">${getPercent(data[i].totalConfirmed,data[i].activeCases)}%</span></p>
-                    <p class="h4 font-weight-light text-danger">Death  ${data[i].totalDeaths} <span class="badge badge-danger">${getPercent(data[i].totalConfirmed,data[i].totalDeaths)}%</span></p>
-                    <p class="h4 font-weight-light text-success">Recoverd ${data[i].totalRecovered} <span class="badge badge-success">${getPercent(data[i].totalConfirmed,data[i].totalRecovered)}%</span></p>
-                </div>
-                    </div>
-                </div>
-                <div class="col mb-3">
-                    <div class="card shadow h-100 rounded fade">
-                    <div class="card-body text-center">
-                    <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${data[i+1].countryCode.toLowerCase()}.svg" alt="${data[i+1].country}-flag" ></span> ${data[i+1].country}</p>
-                    <p class="h4 font-weight-light text-primary">Total ${data[i+1].totalConfirmed}</p>
-                    <p class="h4 font-weight-light text-warning">Active ${data[i+1].activeCases} <span class="badge badge-warning">${getPercent(data[i+1].totalConfirmed,data[i+1].activeCases)}%</span></p>
-                    <p class="h4 font-weight-light text-danger">Death  ${data[i+1].totalDeaths} <span class="badge badge-danger">${getPercent(data[i+1].totalConfirmed,data[i+1].totalDeaths)}%</span></p>
-                    <p class="h4 font-weight-light text-success">Recoverd ${data[i+1].totalRecovered} <span class="badge badge-success">${getPercent(data[i+1].totalConfirmed,data[i+1].totalRecovered)}%</span></p>
-                </div>
-                    </div>
-                </div>
-                
-                </div>`
-                    // $("#top-ten").append(html);
                     $("#top-ten").append(newHtml);
                 }
                 console.log(data);
@@ -285,13 +259,6 @@ $(document).ready(() => {
         } catch (error) {
             console.log(error)
         }
-
-
-
-
-
-
-
     };
 
 
@@ -359,11 +326,7 @@ $(document).ready(() => {
         })
     }
 
-
     // pagination end
-
-
-
 
     //geolocation//
 
@@ -411,9 +374,9 @@ $(document).ready(() => {
                     <div class="card-body text-center">
                         <p class="hh4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${countryCode.toLowerCase()}.svg" alt="${country}-flag" ></span> ${country}</p>
                         <p class="h4 font-weight-light text-primary">Total ${total}</p>
-                        <p class="h4 font-weight-light text-warning">Active ${active} <span class="badge badge-warning">${getPercent(total,active)}%</span></p>
-                        <p class="h4 font-weight-light text-danger">Death ${death} <span class="badge badge-danger">${getPercent(total,death)}%</span></p>
-                        <p class="h4 font-weight-light  text-success">Recoverd ${recoverd} <span class="badge badge-success">${getPercent(total,recoverd)}%</span></p>
+                        <p class="h4 font-weight-light text-warning">Active ${active} <span class="badge badge-warning">${getPercent(total, active)}%</span></p>
+                        <p class="h4 font-weight-light text-danger">Death ${death} <span class="badge badge-danger">${getPercent(total, death)}%</span></p>
+                        <p class="h4 font-weight-light  text-success">Recoverd ${recoverd} <span class="badge badge-success">${getPercent(total, recoverd)}%</span></p>
                     </div>
                 </div>`;
                     $(".client-country-card").append(html);
@@ -470,11 +433,11 @@ $(document).ready(() => {
         let active = allData.totalActiveCases;
         $("#global-total-case").text(total)
         $("#total-death-number").text(death)
-        $("#total-death-number-percent").html(`<span class="badge badge-danger">${getPercent(total, death) }%</span>`)
+        $("#total-death-number-percent").html(`<span class="badge badge-danger">${getPercent(total, death)}%</span>`)
         $("#total-recovered-number").text(recovered)
         $("#total-recovered-number-percent").html(`<span class="badge badge-success">${getPercent(total, recovered)}%</span>`)
         $("#total-active-number").text(active)
-        $("#total-active-number-percent").html(`<span class="badge badge-warning text-white">${getPercent(total, active) }%</span>`)
+        $("#total-active-number-percent").html(`<span class="badge badge-warning text-white">${getPercent(total, active)}%</span>`)
         createChartBar(total, death, recovered, active);
 
     }
@@ -490,12 +453,16 @@ $(document).ready(() => {
                 let death = [];
                 let recoverd = [];
                 let date = [];
-                for (let i = 0; i < data.length; i++) {
+                for (let i = 0; i < data.length - 1; i += 5) {
                     total.push(data[i].total_confirmed);
                     death.push(data[i].total_deaths);
                     recoverd.push(data[i].total_recovered);
                     date.push(data[i].last_updated.slice(5, 10));
                 }
+                total.push(data[data.length - 1].total_confirmed);
+                death.push(data[data.length - 1].total_deaths);
+                recoverd.push(data[data.length - 1].total_recovered);
+                date.push(data[data.length - 1].last_updated.slice(5, 10));
                 if (canvas == 'search-canvas') {
                     $(".loader-search").fadeOut(600);
                 }
@@ -704,9 +671,9 @@ $(document).ready(() => {
                         <div class="card-body text-center mt-3" id="search-card-body">
                         <p class="h4 font-weight-light"><span><img class="flag-icon" src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${countryCode.toLowerCase()}.svg" alt="${country}-flag" ></span> ${country}</p>
                         <p class="h4 font-weight-light text-primary">Total : ${total}</p>
-                        <p class="h4 font-weight-light text-warning">Active ${active} <span class="badge badge-warning">${getPercent(total,active)}%</span></p>
-                        <p class="h4 font-weight-light text-danger">Death ${death} <span class="badge badge-danger">${getPercent(total,death)}%</span></p>
-                        <p class="h4 font-weight-light text-success">Recoverd ${recovered} <span class="badge badge-success">${getPercent(total,recovered)}%</span></p>
+                        <p class="h4 font-weight-light text-warning">Active ${active} <span class="badge badge-warning">${getPercent(total, active)}%</span></p>
+                        <p class="h4 font-weight-light text-danger">Death ${death} <span class="badge badge-danger">${getPercent(total, death)}%</span></p>
+                        <p class="h4 font-weight-light text-success">Recoverd ${recovered} <span class="badge badge-success">${getPercent(total, recovered)}%</span></p>
                           </div>
                          </div>`;
                         $("#search-card").append(card);
@@ -725,6 +692,20 @@ $(document).ready(() => {
         })
     }
     ///search end///
+    // hover effect
+    setInterval(hoverEffect, 400)
+
+    function hoverEffect() {
+        let card = document.querySelectorAll(".card");
+        for (let i = 0; i < card.length; i++) {
+            card[i].addEventListener("mouseover", () => {
+                card[i].classList.replace("shadow", "shadow-sm")
+            })
+            card[i].addEventListener("mouseout", () => {
+                card[i].classList.replace("shadow-sm", "shadow")
+            })
+        }
+    }
 })
 
 function getPercent(total, current) {
