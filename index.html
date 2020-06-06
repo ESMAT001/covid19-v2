@@ -26,6 +26,7 @@
     <!-- chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+   
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -457,8 +458,8 @@
             <hr>
             <section class="client-country my-5" id="client-country-data">
                 <div class="row">
-                    <div class="col col-sm-12 col-md-8 col-lg-4 mx-auto client-country-data">
-                        <div class="card">
+                    <div class="col col-sm-12 col-md-8 col-lg-4 mx-auto client-country-card ">
+                        <div class="card ">
                             <div class="card-body">
                                 <h3>hi</h3>
                                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
@@ -478,13 +479,14 @@
             <hr>
 
             <section class="search my-5">
+                <h4 class="h4 text-center">Search country</h4>
                 <div class="row">
                     <div class="col col-sm-12 col-md-6 mx-auto">
                         <div class="input-group mb-3 input-group-lg">
-                            <input type="text" id="textBox" list="list" class="form-control" placeholder="Search">
+                            <input type="text" id="textBox" list="list" class="form-control" placeholder="country code">
                             <datalist id="list"></datalist>
                             <div class="input-group-append">
-                                <button class="btn btn-success" type="submit" id="btn-search">Search</button>
+                                <button class="btn btn-primary" type="submit" id="btn-search">Search</button>
                             </div>
                         </div>
                     </div>
@@ -1534,7 +1536,27 @@
         </div>
     </section>
     </main>
-    <footer>
+    <footer class="container-fluid py-3 px-5">
+        <div class="row">
+            <div class="col col-lg-6">
+                <div class="row">
+                    <div class="col d-flex flex-row justify-content-center">
+
+                        <a y href="#"><i class="fab fa-facebook-square"></i></a>
+
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col col-lg-6">
+                <div class="row">
+                    <div class="col">
+                        <p class="copyright  w-100 font-weight-light mx-auto">Copyright © 2020 Esmatullah niazi </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
     </div>
     <script src="app.js"></script>
