@@ -69,6 +69,7 @@ $(document).ready(() => {
     getData();
     getGlobalData();
     topTenCountries();
+    news();
     //ajax start////////
     async function getData() {
         try {
@@ -175,7 +176,7 @@ $(document).ready(() => {
                             <p class="h4 font-weight-light  text-success">Recoverd ${recoverd} <span class="badge badge-success">${getPercent(total, recoverd)}%</span></p>
                            </div>
                           </div>`
-                            // $(".world-map-country-card").show();
+                        // $(".world-map-country-card").show();
                         $(".world-map-country-card").append(html);
                     }
                 }
@@ -331,6 +332,8 @@ $(document).ready(() => {
     //geolocation//
 
     function getLocationAndInsertIt(data) {
+        // clientCountryNews(countryCode)
+        $(".client-country-news").hide();
         console.log("msg")
         if (navigator.geolocation) {
             console.log("msg2")
@@ -382,6 +385,8 @@ $(document).ready(() => {
                     $(".client-country-card").append(html);
                     insertCountryDataChart(countryCode, 'canvas-client-country-data');
                     $(".loader").fadeOut(600);
+                    clientCountryNews(countryCode,country);
+                    $(".client-country-news").show();
                     document.getElementById("body").classList.remove("overflow");
                 } else {
                     $("#client-country-data").hide();
@@ -694,7 +699,6 @@ $(document).ready(() => {
     ///search end///
     // hover effect
     setInterval(hoverEffect, 400)
-
     function hoverEffect() {
         let card = document.querySelectorAll(".card");
         for (let i = 0; i < card.length; i++) {
@@ -704,6 +708,87 @@ $(document).ready(() => {
             card[i].addEventListener("mouseout", () => {
                 card[i].classList.replace("shadow-sm", "shadow")
             })
+        }
+    }
+    async function news() {
+        try {
+            let newsData = await fetch("https://api.coronatracker.com/news/trending?limit=9&offset=&language=en");
+            if (newsData.status == 200) {
+
+                newsData = await newsData.json()
+                console.log(newsData);
+                console.log("news");
+                for (let i = 0; i < newsData.items.length; i++) {
+                    console.log("news");
+                    let html = `   <div class="row my-3">
+                    <div class="col">
+                        <div class="row px-3">
+                            <div class="col-md-3 col-12 d-flex flex-column justify-content-center">
+                            <img src="${newsData.items[i].urlToImage}" class="image" alt="">
+                            </div>
+                            <div class="col-md-9 col-12 pt-3  px-3 d-flex flex-column justify-content-center"><p class="mb-1">${newsData.items[i].title}  <span class="float-right mr-3"><a  data-toggle="collapse" class="news-link text-primary collapsed" data-target="#num${i}" aria-expanded="false">read more</a></span></p></div>
+                        </div>
+                        <div class="row mt-2 mt-md-4">
+                        <div class="col">
+                        <div id="num${i}" class="collapse col-12 px-md-4">
+                        <p class="p-news">${newsData.items[i].content}</p>
+                        <p class="p-news">Source:<a href="https://${newsData.items[i].siteName}" target="_blank">${newsData.items[i].siteName}</a></p>
+                        <p><a href="${newsData.items[i].url}" target="_blank">See orignial news</a></p>
+                     </div></div>
+                        </div>
+                       
+                    </div>
+                </div><hr>`
+                    console.log("news2");
+                    $(".news").append(html);
+                };
+
+            } else {
+                console.log("error news");
+                news();
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    async function clientCountryNews(countryCode,country) {
+        try {
+            let newsData = await fetch(`https://api.coronatracker.com/news/trending?limit=10&offset=0&countryCode=${countryCode}&country=${country}&language=en`);
+            if (newsData.status == 200) {
+
+                newsData = await newsData.json()
+                console.log(newsData);
+                console.log("news");
+                for (let i = 0; i < newsData.items.length; i++) {
+                    console.log("news");
+                    let html = `   <div class="row my-3">
+                    <div class="col">
+                        <div class="row px-3">
+                            <div class="col-md-3 col-12 d-flex flex-column justify-content-center">
+                            <img src="${newsData.items[i].urlToImage}" class="image" alt="">
+                            </div>
+                            <div class="col-md-9 col-12 pt-3  px-3 d-flex flex-column justify-content-center"><p class="mb-1">${newsData.items[i].title}  <span class="float-right mr-3"><a  data-toggle="collapse" class="news-link text-primary collapsed" data-target="#num${i}" aria-expanded="false">read more</a></span></p></div>
+                        </div>
+                        <div class="row mt-2 mt-md-4">
+                        <div class="col">
+                        <div id="num${i}" class="collapse col-12 px-md-4">
+                        <p class="p-news">${newsData.items[i].content}</p>
+                        <p class="p-news">Source:<a href="https://${newsData.items[i].siteName}" target="_blank">${newsData.items[i].siteName}</a></p>
+                        <p><a href="${newsData.items[i].url}" target="_blank">See orignial news</a></p>
+                     </div></div>
+                        </div>
+                       
+                    </div>
+                </div><hr>`
+                    console.log("news2");
+                    $(".client-country-news").append(html);     
+                };
+            } else {
+                console.log("error news");
+                news();
+            }
+        } catch (error) {
+            console.error(error)
         }
     }
 })
